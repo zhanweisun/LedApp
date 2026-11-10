@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="drawable" name="jg">@drawable/ic_chevron_right_thin</item>
+    <item type="drawable" name="jh">@drawable/ic_chevron_left_thin</item>
+    <item type="drawable" name="kx">#3333b5e5</item>
+    <item type="drawable" name="ky">#0cffffff</item>
+</resources>

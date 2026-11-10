@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    本工程自己使用的语义化颜色。
+    数值与原 APK（主题 ol / 配色）完全一致，只是换成了看得懂的名字，
+    代码和布局里优先使用这里的颜色。
+-->
+<resources>
+    <!-- 背景 / 表面 -->
+    <color name="background_dark">#FF18191A</color>   <!-- 页面底色（原 colorBackground） -->
+    <color name="surface_card">#FF242526</color>      <!-- 设置卡片底色（原 d8） -->
+    <color name="surface_divider">#FF3A3B3C</color>   <!-- 分隔线 / 分组底色（原 d3、d7） -->
+    <color name="black">#FF000000</color>             <!-- 纯黑（原 at） -->
+
+    <!-- 文字 / 图标 -->
+    <color name="text_primary">#FFE4E6EB</color>      <!-- 主要文字、图标（原 a9h） -->
+    <color name="text_secondary">#FFA6A7AA</color>    <!-- 次要文字（原 a9l） -->
+    <color name="tint_white">#FFFFFFFF</color>        <!-- 图标着色（原 a9p） -->
+
+    <!-- 强调色 -->
+    <color name="accent_blue">#FF006BDE</color>       <!-- 主色（原 cu） -->
+    <color name="selection_blue">#FF006BDE</color>    <!-- 选中状态 -->
+    <color name="danger_red">#FFF44336</color>        <!-- 错误 / 删除（原 zh） -->
+
+    <!-- 半透明遮罩 -->
+    <color name="bg_picker_tile">#33FFFFFF</color>    <!-- 颜色选择入口底色（原 a9w） -->
+    <color name="bg_close_button">#42FFFFFF</color>   <!-- 全屏关闭按钮底（原 a9x） -->
+    <color name="scrim">#80000000</color>             <!-- 弹窗遮罩 -->
+
+    <!-- LED 默认配色 -->
+    <color name="led_default_text">#FFCF8933</color>  <!-- 默认文字色（琥珀色） -->
+    <color name="dialog_surface">#FFFFFFFF</color>     <!-- 对话框白底 -->
+    <color name="dialog_text">#FF222222</color>        <!-- 对话框文字 -->
+    <color name="dialog_title">#FF111111</color>       <!-- 对话框标题 -->
+    <color name="dialog_hint">#FFD0D0D0</color>        <!-- 拖拽条 / 浅色提示 -->
+</resources>

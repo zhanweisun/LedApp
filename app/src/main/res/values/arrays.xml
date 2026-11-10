@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="a">
+        <item>Android 1</item>
+        <item>Petit Four</item>
+        <item>Cupcake</item>
+        <item>Donut</item>
+        <item>Eclair</item>
+        <item>Eclair 0_1</item>
+        <item>Eclair MR1</item>
+        <item>Froyo</item>
+        <item>Gingerbread</item>
+        <item>Gingerbread MR1</item>
+        <item>Honeycomb</item>
+        <item>Honeycomb MR1</item>
+        <item>Honeycomb MR2</item>
+        <item>Ice Cream Sandwich</item>
+        <item>Ice Cream Sandwich MR1</item>
+        <item>Jelly Bean</item>
+        <item>Jelly Bean MR1</item>
+        <item>Jelly Bean MR2</item>
+        <item>KitKat</item>
+        <item>KitKat WATCH</item>
+        <item>Lollipop</item>
+        <item>Lollipop MR1</item>
+        <item>Marshmallow</item>
+        <item>Nougat</item>
+        <item>Nougat MR1</item>
+        <item>Oreo</item>
+        <item>Oreo MR1</item>
+        <item>Pie</item>
+        <item>Android 10 Q</item>
+        <item>Android 11 R</item>
+        <item>Android 12 S</item>
+        <item>Android 12L Sv2</item>
+        <item>Android 13 Tiramisu</item>
+    </string-array>
+    <string-array name="b">
+        <item>Version 1</item>
+        <item>Version 1.1</item>
+        <item>Version 1.5</item>
+        <item>Version 1.6</item>
+        <item>Version 2.0</item>
+        <item>Version 2.0.1</item>
+        <item>Version 2.1</item>
+        <item>Version 2.2</item>
+        <item>Version 2.3</item>
+        <item>Version 2.3.3</item>
+        <item>Version 3.0</item>
+        <item>Version 3.1</item>
+        <item>Version 3.2</item>
+        <item>Version 4.0</item>
+        <item>Version 4.0.3</item>
+        <item>Version 4.1</item>
+        <item>Version 4.2</item>
+        <item>Version 4.3</item>
+        <item>Version 4.4</item>
+        <item>Version 4.4W</item>
+        <item>Version 5.0</item>
+        <item>Version 5.1.1</item>
+        <item>Version 6.0</item>
+        <item>Version 7.0</item>
+        <item>Version 7.1.2</item>
+        <item>Version 8.0</item>
+        <item>Version 8.1</item>
+        <item>Version 9</item>
+        <item>Version 10</item>
+        <item>Version 11</item>
+        <item>Version 12</item>
+        <item>Version 12L</item>
+        <item>Version 13</item>
+    </string-array>
+</resources>

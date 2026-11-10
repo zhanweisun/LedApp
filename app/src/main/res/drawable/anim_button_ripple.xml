@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector android:height="@dimen/amf" android:width="@dimen/amf"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:state_pressed="true" android:id="@id/oj" android:drawable="@drawable/ic_dot_48" />
+    <item android:state_checked="true" android:id="@id/dz" android:drawable="@drawable/ic_dot_32" />
+    <item android:id="@id/v4" android:drawable="@drawable/ic_dot_32" app:ahk="true" />
+    <item android:id="@id/ua" android:drawable="@drawable/ic_dot_12" />
+    <transition android:drawable="@drawable/anim_fab_show" android:toId="@id/dz" android:fromId="@id/oj" />
+    <transition android:drawable="@drawable/anim_fab_show" android:toId="@id/v4" android:fromId="@id/oj" />
+    <transition android:drawable="@drawable/anim_fab_hide" android:toId="@id/ua" android:fromId="@id/oj" />
+    <transition android:drawable="@drawable/anim_button_ripple_light" android:toId="@id/oj" android:fromId="@id/dz" />
+    <transition android:drawable="@drawable/anim_button_ripple_dark" android:toId="@id/ua" android:fromId="@id/dz" />
+    <transition android:drawable="@drawable/anim_button_ripple_light" android:toId="@id/oj" android:fromId="@id/v4" />
+    <transition android:drawable="@drawable/anim_fab_scale" android:toId="@id/oj" android:fromId="@id/ua" />
+    <transition android:drawable="@drawable/anim_fab_rotate" android:toId="@id/dz" android:fromId="@id/ua" />
+</animated-selector>

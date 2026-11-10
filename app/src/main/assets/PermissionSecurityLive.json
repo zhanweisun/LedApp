@@ -1,0 +1,370 @@
+{
+  "android.permission.ACCEPT_HANDOVER": [
+    "dangerous"
+  ],
+  "android.permission.ACCESS_BACKGROUND_LOCATION": [
+    "dangerous"
+  ],
+  "android.permission.ACCESS_COARSE_LOCATION": [
+    "dangerous"
+  ],
+  "android.permission.ACCESS_FINE_LOCATION": [
+    "dangerous"
+  ],
+  "android.permission.ACCESS_LOCATION_EXTRA_COMMANDS": [
+    "normal"
+  ],
+  "android.permission.ACCESS_MEDIA_LOCATION": [
+    "dangerous"
+  ],
+  "android.permission.ACCESS_NETWORK_STATE": [
+    "normal"
+  ],
+  "android.permission.ACCESS_NOTIFICATION_POLICY": [
+    "normal"
+  ],
+  "android.permission.ACCESS_WIFI_STATE": [
+    "normal"
+  ],
+  "android.permission.ACTIVITY_RECOGNITION": [
+    "dangerous"
+  ],
+  "android.permission.ANSWER_PHONE_CALLS": [
+    "dangerous"
+  ],
+  "android.permission.BATTERY_STATS": [
+    "signature",
+    "privileged",
+    "development"
+  ],
+  "android.permission.BIND_ACCESSIBILITY_SERVICE": [
+    "signature"
+  ],
+  "android.permission.BIND_AUTOFILL_SERVICE": [
+    "signature"
+  ],
+  "android.permission.BIND_CALL_REDIRECTION_SERVICE": [
+    "signature",
+    "privileged"
+  ],
+  "android.permission.BIND_CARRIER_MESSAGING_CLIENT_SERVICE": [
+    "signature"
+  ],
+  "android.permission.BIND_CARRIER_SERVICES": [
+    "signature",
+    "privileged"
+  ],
+  "android.permission.BIND_CONDITION_PROVIDER_SERVICE": [
+    "signature"
+  ],
+  "android.permission.BIND_DEVICE_ADMIN": [
+    "signature"
+  ],
+  "android.permission.BIND_DREAM_SERVICE": [
+    "signature"
+  ],
+  "android.permission.BIND_INCALL_SERVICE": [
+    "signature",
+    "privileged"
+  ],
+  "android.permission.BIND_INPUT_METHOD": [
+    "signature"
+  ],
+  "android.permission.BIND_MIDI_DEVICE_SERVICE": [
+    "signature"
+  ],
+  "android.permission.BIND_NFC_SERVICE": [
+    "signature"
+  ],
+  "android.permission.BIND_NOTIFICATION_LISTENER_SERVICE": [
+    "signature"
+  ],
+  "android.permission.BIND_PRINT_SERVICE": [
+    "signature"
+  ],
+  "android.permission.BIND_QUICK_ACCESS_WALLET_SERVICE": [
+    "signature"
+  ],
+  "android.permission.BIND_REMOTEVIEWS": [
+    "signature",
+    "privileged"
+  ],
+  "android.permission.BIND_SCREENING_SERVICE": [
+    "signature",
+    "privileged"
+  ],
+  "android.permission.BIND_TELECOM_CONNECTION_SERVICE": [
+    "signature",
+    "privileged"
+  ],
+  "android.permission.BIND_TEXT_SERVICE": [
+    "signature"
+  ],
+  "android.permission.BIND_TV_INPUT": [
+    "signature",
+    "privileged"
+  ],
+  "android.permission.BIND_VISUAL_VOICEMAIL_SERVICE": [
+    "signature",
+    "privileged"
+  ],
+  "android.permission.BIND_VOICE_INTERACTION": [
+    "signature"
+  ],
+  "android.permission.BIND_VPN_SERVICE": [
+    "signature"
+  ],
+  "android.permission.BIND_VR_LISTENER_SERVICE": [
+    "signature"
+  ],
+  "android.permission.BIND_WALLPAPER": [
+    "signature",
+    "privileged"
+  ],
+  "android.permission.BLUETOOTH": [
+    "normal"
+  ],
+  "android.permission.BLUETOOTH_ADMIN": [
+    "normal"
+  ],
+  "android.permission.BODY_SENSORS": [
+    "dangerous"
+  ],
+  "android.permission.BROADCAST_STICKY": [
+    "normal"
+  ],
+  "android.permission.CALL_COMPANION_APP": [
+    "normal"
+  ],
+  "android.permission.CALL_PHONE": [
+    "dangerous"
+  ],
+  "android.permission.CAMERA": [
+    "dangerous"
+  ],
+  "android.permission.CHANGE_CONFIGURATION": [
+    "signature",
+    "privileged",
+    "development"
+  ],
+  "android.permission.CHANGE_NETWORK_STATE": [
+    "normal"
+  ],
+  "android.permission.CHANGE_WIFI_MULTICAST_STATE": [
+    "normal"
+  ],
+  "android.permission.CHANGE_WIFI_STATE": [
+    "normal"
+  ],
+  "android.permission.CLEAR_APP_CACHE": [
+    "signature",
+    "privileged"
+  ],
+  "android.permission.DELETE_CACHE_FILES": [
+    "signature",
+    "privileged"
+  ],
+  "android.permission.DISABLE_KEYGUARD": [
+    "normal"
+  ],
+  "android.permission.EXPAND_STATUS_BAR": [
+    "normal"
+  ],
+  "android.permission.FOREGROUND_SERVICE": [
+    "normal"
+  ],
+  "android.permission.GET_ACCOUNTS": [
+    "dangerous"
+  ],
+  "android.permission.GET_ACCOUNTS_PRIVILEGED": [
+    "signature",
+    "privileged"
+  ],
+  "android.permission.GET_PACKAGE_SIZE": [
+    "normal"
+  ],
+  "android.permission.GLOBAL_SEARCH": [
+    "signature",
+    "privileged"
+  ],
+  "android.permission.INSTANT_APP_FOREGROUND_SERVICE": [
+    "signature",
+    "development",
+    "instant",
+    "appop"
+  ],
+  "android.permission.INTERNET": [
+    "normal"
+  ],
+  "android.permission.KILL_BACKGROUND_PROCESSES": [
+    "normal"
+  ],
+  "android.permission.LOADER_USAGE_STATS": [
+    "signature",
+    "privileged",
+    "appop"
+  ],
+  "android.permission.MANAGE_EXTERNAL_STORAGE": [
+    "signature",
+    "appop",
+    "preinstalled"
+  ],
+  "android.permission.MANAGE_ONGOING_CALLS": [
+    "signature",
+    "appop"
+  ],
+  "android.permission.MANAGE_OWN_CALLS": [
+    "normal"
+  ],
+  "android.permission.MODIFY_AUDIO_SETTINGS": [
+    "normal"
+  ],
+  "android.permission.NFC": [
+    "normal"
+  ],
+  "android.permission.NFC_PREFERRED_PAYMENT_INFO": [
+    "normal"
+  ],
+  "android.permission.NFC_TRANSACTION_EVENT": [
+    "normal"
+  ],
+  "android.permission.PACKAGE_USAGE_STATS": [
+    "signature",
+    "privileged",
+    "development",
+    "appop",
+    "retailDemo"
+  ],
+  "android.permission.QUERY_ALL_PACKAGES": [
+    "normal"
+  ],
+  "android.permission.READ_CALENDAR": [
+    "dangerous"
+  ],
+  "android.permission.READ_CALL_LOG": [
+    "dangerous"
+  ],
+  "android.permission.READ_CONTACTS": [
+    "dangerous"
+  ],
+  "android.permission.READ_EXTERNAL_STORAGE": [
+    "dangerous"
+  ],
+  "android.permission.READ_PHONE_NUMBERS": [
+    "dangerous"
+  ],
+  "android.permission.READ_PHONE_STATE": [
+    "dangerous"
+  ],
+  "android.permission.READ_SMS": [
+    "dangerous"
+  ],
+  "android.permission.READ_SYNC_SETTINGS": [
+    "normal"
+  ],
+  "android.permission.READ_SYNC_STATS": [
+    "normal"
+  ],
+  "android.permission.RECEIVE_BOOT_COMPLETED": [
+    "normal"
+  ],
+  "android.permission.RECEIVE_MMS": [
+    "dangerous"
+  ],
+  "android.permission.RECEIVE_SMS": [
+    "dangerous"
+  ],
+  "android.permission.RECEIVE_WAP_PUSH": [
+    "dangerous"
+  ],
+  "android.permission.RECORD_AUDIO": [
+    "dangerous"
+  ],
+  "android.permission.REORDER_TASKS": [
+    "normal"
+  ],
+  "android.permission.REQUEST_COMPANION_PROFILE_WATCH": [
+    "normal"
+  ],
+  "android.permission.REQUEST_COMPANION_RUN_IN_BACKGROUND": [
+    "normal"
+  ],
+  "android.permission.REQUEST_COMPANION_USE_DATA_IN_BACKGROUND": [
+    "normal"
+  ],
+  "android.permission.REQUEST_DELETE_PACKAGES": [
+    "normal"
+  ],
+  "android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS": [
+    "normal"
+  ],
+  "android.permission.REQUEST_INSTALL_PACKAGES": [
+    "signature"
+  ],
+  "android.permission.REQUEST_PASSWORD_COMPLEXITY": [
+    "normal"
+  ],
+  "android.permission.SEND_SMS": [
+    "dangerous"
+  ],
+  "android.permission.SET_WALLPAPER": [
+    "normal"
+  ],
+  "android.permission.SET_WALLPAPER_HINTS": [
+    "normal"
+  ],
+  "android.permission.START_VIEW_PERMISSION_USAGE": [
+    "signature",
+    "installer"
+  ],
+  "android.permission.SYSTEM_ALERT_WINDOW": [
+    "signature",
+    "appop",
+    "preinstalled",
+    "pre23",
+    "development"
+  ],
+  "android.permission.TRANSMIT_IR": [
+    "normal"
+  ],
+  "android.permission.USE_BIOMETRIC": [
+    "normal"
+  ],
+  "android.permission.USE_FULL_SCREEN_INTENT": [
+    "normal"
+  ],
+  "android.permission.USE_ICC_AUTH_WITH_DEVICE_IDENTIFIER": [
+    "signature",
+    "appop"
+  ],
+  "android.permission.USE_SIP": [
+    "dangerous"
+  ],
+  "android.permission.VIBRATE": [
+    "normal"
+  ],
+  "android.permission.WAKE_LOCK": [
+    "normal"
+  ],
+  "android.permission.WRITE_CALENDAR": [
+    "dangerous"
+  ],
+  "android.permission.WRITE_CALL_LOG": [
+    "dangerous"
+  ],
+  "android.permission.WRITE_CONTACTS": [
+    "dangerous"
+  ],
+  "android.permission.WRITE_EXTERNAL_STORAGE": [
+    "dangerous"
+  ],
+  "android.permission.WRITE_SETTINGS": [
+    "signature",
+    "preinstalled",
+    "appop",
+    "pre23"
+  ],
+  "android.permission.WRITE_SYNC_SETTINGS": [
+    "normal"
+  ]
+}

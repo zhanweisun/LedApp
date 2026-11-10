@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    本工程自有的界面文案（语义化命名，便于查找）。
+    英文为默认值，中文见 values-zh-rCN/app_strings.xml。
+-->
+<resources>
+    <!-- 应用 -->
+    <string name="app_name">LED Scroller</string>
+
+    <!-- 输入区 -->
+    <string name="menu">Menu</string>
+    <string name="emoji">Emoji</string>
+    <string name="clear">Clear</string>
+
+    <!-- 设置项标题 -->
+    <string name="direction">Direction</string>
+    <string name="speed">Speed</string>
+    <string name="blink">Blink</string>
+    <string name="brightness">Brightness</string>
+    <string name="led_size">LED Size</string>
+    <string name="font_size">Font size</string>
+    <string name="font_type">Font type</string>
+    <string name="font_color">Font color</string>
+    <string name="background_color">Background color</string>
+    <string name="background_effect">Background Effect</string>
+    <string name="edge">Edge</string>
+    <string name="edge_color">Edge color</string>
+    <string name="edge_radius">Edge radius</string>
+    <string name="edge_size">Edge size</string>
+    <string name="full_screen">Full screen</string>
+
+    <!-- 方向按钮 -->
+    <string name="direction_ltr">Left to right</string>
+    <string name="direction_pause">Pause</string>
+    <string name="direction_rtl">Right to left</string>
+
+    <!-- 背景效果 -->
+    <string name="effect_video">Video</string>
+    <string name="effect_image">Image</string>
+
+    <!-- 播放 -->
+    <string name="play">Play</string>
+
+    <!-- 对话框 -->
+    <string name="pick_color">Color</string>
+    <string name="apply">Apply</string>
+</resources>

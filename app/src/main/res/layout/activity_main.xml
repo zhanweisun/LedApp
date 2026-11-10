@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    主界面布局（对应原 APK 的 activity_main）。
+    · 结构、尺寸、图标、配色均与原版一致；
+    · 原版依赖第三方库的控件已替换为标准控件：滑动条 -> SeekBar，
+      开关 -> SwitchCompat，分段选择 -> SegmentTabLayout，播放按钮 -> MaterialButton；
+    · 资源 id 已改成语义化命名，见 README「资源命名」一节。
+-->
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_drawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_dark"
+        android:orientation="vertical">
+
+        <!-- ===================== 顶部 LED 预览（16:9） ===================== -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/preview_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- 背景（视频 / 图片），与 LED 点阵遮罩叠加形成背景动画 -->
+            <!-- 背景视频：TextureView + MediaPlayer，静音循环、居中裁剪 -->
+            <com.ledapp.scroller.widget.BackgroundVideoView
+                android:id="@+id/preview_background_video"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="H,16:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- 背景图片：与视频二选一，居中裁剪 -->
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/preview_background_image"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                app:layout_constraintDimensionRatio="H,16:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- LED 点阵文字：与上面两层背景合成，负责滚动/闪烁/点阵遮罩 -->
+            <com.ledapp.scroller.widget.LEDScrollerView
+                android:id="@+id/led_scroller_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintDimensionRatio="H,16:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- 边缘流光 -->
+            <com.ledapp.scroller.widget.EdgeLightView
+                android:id="@+id/edge_light_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                app:layout_constraintDimensionRatio="H,16:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- ===================== 输入区 ===================== -->
+        <LinearLayout
+            android:id="@+id/input_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/preview_container"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/input_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@color/surface_card"
+                android:gravity="center_vertical"
+                android:minHeight="66dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="2dp">
+
+                <!-- 左侧：菜单（打开颜色/字体/表情菜单） -->
+                <ImageView
+                    android:id="@+id/menu_button"
+                    android:layout_width="36dp"
+                    android:layout_height="66dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/selector_icon_button_bg"
+                    android:contentDescription="@string/menu"
+                    android:padding="4dp"
+                    android:src="@drawable/selector_icon_menu"
+                    app:tint="@color/text_primary" />
+
+                <!-- 表情按钮 -->
+                <ImageView
+                    android:id="@+id/emoji_button"
+                    android:layout_width="36dp"
+                    android:layout_height="66dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/selector_icon_button_bg"
+                    android:contentDescription="@string/emoji"
+                    android:padding="4dp"
+                    android:src="@drawable/selector_icon_emoji"
+                    app:tint="@color/text_primary" />
+
+                <!-- 文字输入框：内容实时同步到预览 -->
+                <EditText
+                    android:id="@+id/input_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:imeOptions="actionDone"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:maxLines="3"
+                    android:minHeight="52dp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_primary"
+                    android:textSize="20sp"
+                    android:importantForAutofill="no" />
+
+                <!-- 清除按钮（有文字时显示） -->
+                <FrameLayout
+                    android:id="@+id/clear_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/selector_icon_button_bg"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/clear_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="8dp"
+                        android:text="@string/clear"
+                        android:textColor="@color/accent_blue"
+                        android:textSize="15sp"
+                        android:visibility="gone" />
+
+                    <ImageView
+                        android:id="@+id/clear_icon"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:alpha="0.7"
+                        android:contentDescription="@string/clear"
+                        android:padding="6dp"
+                        android:src="@drawable/ic_close_circle"
+                        app:tint="@color/text_primary" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:background="@color/background_dark" />
+        </LinearLayout>
+
+        <!-- ===================== 设置项（可滚动） ===================== -->
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@id/play_bar"
+            android:layout_below="@id/input_section">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--
+                    方向设置：三个图标按钮（左到右 / 静止 / 右到左），
+                    选中项用蓝色高亮。
+                -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/surface_card"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="@string/direction"
+                            android:textColor="@color/text_primary"
+                            android:textSize="18sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <LinearLayout
+                            android:id="@+id/dir_group"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:background="@color/surface_divider"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:padding="1dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.5">
+
+                            <ImageView
+                                android:id="@+id/direction_ltr"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:contentDescription="@string/direction_ltr"
+                                android:padding="6dp"
+                                android:src="@drawable/ic_direction_ltr"
+                                app:tint="@color/text_primary" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/surface_card" />
+
+                            <ImageView
+                                android:id="@+id/direction_pause"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:contentDescription="@string/direction_pause"
+                                android:padding="6dp"
+                                android:src="@drawable/ic_direction_pause"
+                                app:tint="@color/text_primary" />
+
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/surface_card" />
+
+                            <ImageView
+                                android:id="@+id/direction_rtl"
+                                android:layout_width="0dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="1"
+                                android:contentDescription="@string/direction_rtl"
+                                android:padding="6dp"
+                                android:src="@drawable/ic_direction_rtl"
+                                app:tint="@color/text_primary" />
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/background_dark" />
+
+                    <!-- 速度：SeekBar 0~97，映射为 0.01~0.98 的滚动速度 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp">
+
+                        <TextView
+                            android:id="@+id/speed_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/speed"
+                            android:textColor="@color/text_primary"
+                            android:textSize="18sp" />
+
+                        <SeekBar
+                            android:id="@+id/speed_seek"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:max="97"
+                            android:paddingStart="20dp"
+                            android:progress="19"
+                            android:progressTint="@color/accent_blue" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/background_dark" />
+
+                    <!-- 闪烁：SeekBar 0~10，映射为 0~1 的闪烁强度 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/blink"
+                            android:textColor="@color/text_primary"
+                            android:textSize="18sp" />
+
+                        <SeekBar
+                            android:id="@+id/blink_seek"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:max="10"
+                            android:paddingStart="20dp"
+                            android:progressTint="@color/accent_blue" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/background_dark" />
+
+                    <!-- 亮度：SeekBar 0~100，直接设置窗口屏幕亮度 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/brightness"
+                            android:textColor="@color/text_primary"
+                            android:textSize="18sp" />
+
+                        <SeekBar
+                            android:id="@+id/brightness_seek"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:max="100"
+                            android:paddingStart="20dp"
+                            android:progress="50"
+                            android:progressTint="@color/accent_blue" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/background_dark" />
+
+                    <!-- LED 大小：SeekBar 0~20，即点阵灯珠间距（px） -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/led_size"
+                            android:textColor="@color/text_primary"
+                            android:textSize="18sp" />
+
+                        <SeekBar
+                            android:id="@+id/led_size_seek"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:max="20"
+                            android:paddingStart="20dp"
+                            android:progress="3"
+                            android:progressTint="@color/accent_blue" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/background_dark" />
+
+                    <!-- 字体大小：SeekBar 5~100，即字号占比 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/font_size"
+                            android:textColor="@color/text_primary"
+                            android:textSize="18sp" />
+
+                        <SeekBar
+                            android:id="@+id/font_size_seek"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:max="95"
+                            android:paddingStart="20dp"
+                            android:progress="45"
+                            android:progressTint="@color/accent_blue" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/background_dark" />
+
+                    <!-- 字体类型：整行可点击，弹出字体选择（APK 自带 10 种字体） -->
+                    <LinearLayout
+                        android:id="@+id/font_type_row"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp">
+
+                        <TextView
+                            android:id="@+id/font_type_label"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/font_type"
+                            android:textColor="@color/text_primary"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/font_type_value"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/rubik_bold"
+                            android:maxLines="1"
+                            android:textColor="@color/text_primary"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/background_dark" />
+
+                    <!-- 字体颜色：点击右侧色轮弹出取色器 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/font_color"
+                            android:textColor="@color/text_primary"
+                            android:textSize="18sp" />
+
+                        <androidx.constraintlayout.utils.widget.ImageFilterView
+                            android:id="@+id/font_color_picker"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:background="@color/bg_picker_tile"
+                            android:contentDescription="@string/font_color"
+                            android:padding="4dp"
+                            android:src="@drawable/ic_color_wheel" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/background_dark" />
+
+                    <!-- 背景颜色：LED 底色（纯色或渐变，取色器选择） -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp">
+
+                        <TextView
+                            android:id="@+id/background_color_label"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/background_color"
+                            android:textColor="@color/text_primary"
+                            android:textSize="18sp" />
+
+                        <androidx.constraintlayout.utils.widget.ImageFilterView
+                            android:id="@+id/background_color_picker"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:background="@color/bg_picker_tile"
+                            android:contentDescription="@string/background_color"
+                            android:padding="4dp"
+                            android:src="@drawable/ic_color_wheel" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/background_dark" />
+
+                    <!--
+                        背景效果：
+                          · 分段按钮切换「视频 / 图片」
+                          · “+”按钮从相册导入自定义素材
+                          · 右侧横向列表为素材缩略图，选中项打勾
+                    -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/background_effect"
+                            android:textColor="@color/text_primary"
+                            android:textSize="18sp" />
+
+                        <com.ledapp.scroller.widget.SegmentTabLayout
+                            android:id="@+id/effect_mode_tabs"
+                            android:layout_width="match_parent"
+                            android:layout_height="34dp"
+                            android:layout_marginTop="8dp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            android:id="@+id/video_effect_row">
+
+                            <androidx.constraintlayout.utils.widget.ImageFilterView
+                                android:id="@+id/video_effect_add_button"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginEnd="12dp"
+                                android:background="@color/bg_picker_tile"
+                                android:contentDescription="@string/background_effect"
+                                android:padding="2dp"
+                                android:scaleType="centerCrop" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/video_effect_list"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            android:id="@+id/image_effect_row">
+
+                            <androidx.constraintlayout.utils.widget.ImageFilterView
+                                android:id="@+id/image_effect_add_button"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_marginEnd="12dp"
+                                android:background="@color/bg_picker_tile"
+                                android:contentDescription="@string/background_effect"
+                                android:padding="2dp"
+                                android:scaleType="centerCrop" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/image_effect_list"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/background_dark" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp">
+
+                        <!-- 边缘流光总开关：关掉后隐藏四周的彩色光带 -->
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/edge"
+                            android:textColor="@color/text_primary"
+                            android:textSize="18sp" />
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/edge_switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/background_dark" />
+
+                    <!-- 边缘颜色：点击右侧色轮选择流光颜色 -->
+                    <LinearLayout
+                        android:id="@+id/edge_color_row"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/edge_color"
+                            android:textColor="@color/text_primary"
+                            android:textSize="18sp" />
+
+                        <androidx.constraintlayout.utils.widget.ImageFilterView
+                            android:id="@+id/edge_color_picker"
+                            android:layout_width="42dp"
+                            android:layout_height="42dp"
+                            android:background="@color/bg_picker_tile"
+                            android:contentDescription="@string/edge_color"
+                            android:padding="4dp"
+                            android:src="@drawable/ic_color_wheel" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/background_dark" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp">
+
+                        <!-- 边缘圆角半径 -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/edge_radius"
+                            android:textColor="@color/text_primary"
+                            android:textSize="18sp" />
+
+                        <SeekBar
+                            android:id="@+id/edge_radius_seek"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:max="50"
+                            android:paddingStart="20dp"
+                            android:progress="20"
+                            android:progressTint="@color/accent_blue" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/background_dark" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp">
+
+                        <!-- 边缘光带粗细 -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/edge_size"
+                            android:textColor="@color/text_primary"
+                            android:textSize="18sp" />
+
+                        <SeekBar
+                            android:id="@+id/edge_size_seek"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:max="40"
+                            android:paddingStart="20dp"
+                            android:progress="20"
+                            android:progressTint="@color/accent_blue" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/background_dark" />
+
+                    <!-- 完整屏幕开关（保留原版设置项） -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="12dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/full_screen"
+                            android:textColor="@color/text_primary"
+                            android:textSize="18sp" />
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/full_screen_switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/background_dark" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- ===================== 底部播放按钮（进入全屏） ===================== -->
+        <LinearLayout
+            android:id="@+id/play_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="20dp">
+
+<!--                <androidx.constraintlayout.utils.widget.ImageFilterView-->
+<!--                    android:id="@+id/play_bar_icon"-->
+<!--                    android:layout_width="55dp"-->
+<!--                    android:layout_height="55dp"-->
+<!--                    android:layout_marginEnd="20dp"-->
+<!--                    android:background="@color/surface_divider"-->
+<!--                    android:contentDescription="@string/play"-->
+<!--                    android:scaleType="center"-->
+<!--                    android:src="@drawable/setting_icon"-->
+<!--                    app:tint="@color/text_primary" />-->
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/play_button"
+                    style="@style/LedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:text="@string/play" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

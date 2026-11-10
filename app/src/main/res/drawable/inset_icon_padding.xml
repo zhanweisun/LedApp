@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inset android:insetLeft="@dimen/a4h" android:insetRight="@dimen/a4h" android:insetTop="@dimen/a4h" android:insetBottom="@dimen/a4h"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <shape android:shape="rectangle">
+        <corners android:radius="@dimen/alu" />
+        <solid android:color="?ot" />
+    </shape>
+</inset>

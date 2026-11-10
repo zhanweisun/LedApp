@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 简体中文文案 -->
+<resources>
+    <string name="app_name">LED Scroller</string>
+
+    <string name="menu">菜单</string>
+    <string name="emoji">表情</string>
+    <string name="clear">清除</string>
+
+    <string name="direction">方向</string>
+    <string name="speed">速度</string>
+    <string name="blink">闪烁</string>
+    <string name="brightness">亮度</string>
+    <string name="led_size">LED 大小</string>
+    <string name="font_size">字体大小</string>
+    <string name="font_type">字体类型</string>
+    <string name="font_color">字体颜色</string>
+    <string name="background_color">背景颜色</string>
+    <string name="background_effect">背景效果</string>
+    <string name="edge">边缘</string>
+    <string name="edge_color">边缘颜色</string>
+    <string name="edge_radius">边缘半径</string>
+    <string name="edge_size">边缘大小</string>
+    <string name="full_screen">完整屏幕</string>
+
+    <string name="direction_ltr">左到右</string>
+    <string name="direction_pause">静止</string>
+    <string name="direction_rtl">右到左</string>
+
+    <string name="effect_video">视频</string>
+    <string name="effect_image">图片</string>
+
+    <string name="play">播放</string>
+
+    <string name="pick_color">颜色</string>
+    <string name="apply">应用</string>
+</resources>

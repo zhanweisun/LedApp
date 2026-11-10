@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="a">220</integer>
+    <integer name="b">150</integer>
+    <integer name="c">150</integer>
+    <integer name="d">150</integer>
+    <integer name="f">150</integer>
+    <integer name="g">150</integer>
+    <integer name="h">10000</integer>
+    <integer name="i">2</integer>
+    <integer name="j">300</integer>
+    <integer name="k">12451000</integer>
+    <integer name="l">320</integer>
+    <integer name="m">999</integer>
+    <integer name="n">100</integer>
+    <integer name="o">100</integer>
+    <integer name="r">100</integer>
+    <integer name="s">700</integer>
+    <integer name="t">800</integer>
+    <integer name="u">900</integer>
+    <integer name="v">1000</integer>
+    <integer name="w">450</integer>
+    <integer name="x">500</integer>
+    <integer name="y">550</integer>
+    <integer name="z">600</integer>
+    <integer name="a0">250</integer>
+    <integer name="a1">300</integer>
+    <integer name="a2">350</integer>
+    <integer name="a3">400</integer>
+    <integer name="a4">50</integer>
+    <integer name="a5">100</integer>
+    <integer name="a6">150</integer>
+    <integer name="a7">200</integer>
+    <integer name="a8">0</integer>
+    <integer name="aa">0</integer>
+    <integer name="ae">300</integer>
+    <integer name="af">350</integer>
+    <integer name="ag">200</integer>
+    <integer name="ah">250</integer>
+    <integer name="ai">75</integer>
+    <integer name="aj">150</integer>
+    <integer name="ak">0</integer>
+    <integer name="am">100</integer>
+    <integer name="an">100</integer>
+    <integer name="ao">1</integer>
+    <integer name="ap">1</integer>
+    <integer name="aq">3</integer>
+    <integer name="ar">75</integer>
+    <integer name="as">120</integer>
+    <integer name="at">100</integer>
+    <item type="integer" name="av">@integer/a6</item>
+    <item type="integer" name="aw">@integer/a5</item>
+    <item type="integer" name="ax">@integer/a5</item>
+    <integer name="ay">16</integer>
+    <integer name="az">32</integer>
+    <integer name="b0">32</integer>
+    <integer name="b1">52</integer>
+    <integer name="b2">250</integer>
+    <integer name="b4">1</integer>
+    <integer name="b6">200</integer>
+    <integer name="b7">999</integer>
+</resources>

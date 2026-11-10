@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:gravity="fill">
+        <color android:color="?aqd" />
+    </item>
+    <item android:gravity="center" android:height="@dimen/ao2" android:width="@dimen/ao2" android:drawable="?aqb" />
+    <item android:gravity="center" android:height="@dimen/anx" android:width="@dimen/anx">
+        <shape android:shape="oval">
+            <solid android:color="@android:color/transparent" />
+            <stroke android:width="@dimen/anz" android:color="?aqd" />
+        </shape>
+    </item>
+</layer-list>

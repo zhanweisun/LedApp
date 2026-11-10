@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 背景素材单元格：原版 item_led_media_picker 的等价实现 -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/effect_thumb"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@color/surface_divider"
+        android:scaleType="centerCrop" />
+
+    <ImageView
+        android:id="@+id/effect_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_margin="3dp"
+        android:src="@drawable/ic_checked_badge"
+        android:visibility="gone" />
+</FrameLayout>

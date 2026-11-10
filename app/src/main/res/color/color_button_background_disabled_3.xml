@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="true" android:color="?ni" />
+    <item android:color="?o7" android:alpha="@dimen/ah4" />
+</selector>

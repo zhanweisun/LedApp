@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector android:height="30.0dip" android:width="30.0dip"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:state_pressed="true" android:id="@id/oj" android:drawable="@drawable/ic_circle_small" />
+    <item android:state_checked="true" android:id="@id/dz" android:drawable="@drawable/ic_circle_small" />
+    <item android:id="@id/v4" android:drawable="@drawable/ic_circle_small" app:ahk="true" />
+    <item android:id="@id/ua" android:drawable="@drawable/ic_circle_small" />
+    <transition android:drawable="@drawable/ic_circle_small" android:toId="@id/dz" android:fromId="@id/oj" />
+    <transition android:drawable="@drawable/ic_circle_small" android:toId="@id/v4" android:fromId="@id/oj" />
+    <transition android:drawable="@drawable/ic_circle_small" android:toId="@id/ua" android:fromId="@id/oj" />
+    <transition android:drawable="@drawable/ic_circle_small" android:toId="@id/oj" android:fromId="@id/dz" />
+    <transition android:drawable="@drawable/ic_circle_small" android:toId="@id/ua" android:fromId="@id/dz" />
+    <transition android:drawable="@drawable/ic_circle_small" android:toId="@id/oj" android:fromId="@id/v4" />
+    <transition android:drawable="@drawable/ic_circle_small" android:toId="@id/oj" android:fromId="@id/ua" />
+    <transition android:drawable="@drawable/ic_circle_small" android:toId="@id/dz" android:fromId="@id/ua" />
+</animated-selector>

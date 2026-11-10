@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector android:drawable="@drawable/ic_dot_12"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt">
+    <set android:interpolator="@interpolator/interpolator_material_standard" android:shareInterpolator="true">
+        <target android:name="@string/f8" android:animation="@drawable/anim_switch_off" />
+        <target android:name="@string/f8" android:animation="@drawable/anim_arrow_left" />
+    </set>
+</animated-vector>
